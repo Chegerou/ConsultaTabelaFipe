@@ -11,9 +11,9 @@ namespace TabelaFipeProjectTest
         public void TestMethod1()
         {
 
-            var tabela = new TabelaFipe();
+            var tabela = new TabelaFipeProject.TabelaFipe("carros", "marcas", null, 0, 0);
 
-            var resultado = tabela.GetTabelaFipe("carros", "veiculos", "21");
+            var resultado = tabela.GetTabelaFipe();
 
             Assert.IsNotNull(resultado);
 
