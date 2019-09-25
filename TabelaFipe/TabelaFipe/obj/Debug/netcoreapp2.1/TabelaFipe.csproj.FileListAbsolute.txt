@@ -1,0 +1,14 @@
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\bin\Debug\netcoreapp2.1\TabelaFipe.deps.json
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\bin\Debug\netcoreapp2.1\TabelaFipe.runtimeconfig.json
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\bin\Debug\netcoreapp2.1\TabelaFipe.runtimeconfig.dev.json
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\bin\Debug\netcoreapp2.1\TabelaFipe.dll
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\bin\Debug\netcoreapp2.1\TabelaFipe.pdb
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\obj\Debug\netcoreapp2.1\TabelaFipe.csprojAssemblyReference.cache
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\obj\Debug\netcoreapp2.1\TabelaFipe.csproj.CoreCompileInputs.cache
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\obj\Debug\netcoreapp2.1\TabelaFipe.RazorAssemblyInfo.cache
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\obj\Debug\netcoreapp2.1\TabelaFipe.RazorAssemblyInfo.cs
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\obj\Debug\netcoreapp2.1\TabelaFipe.AssemblyInfoInputs.cache
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\obj\Debug\netcoreapp2.1\TabelaFipe.AssemblyInfo.cs
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\obj\Debug\netcoreapp2.1\TabelaFipe.RazorTargetAssemblyInfo.cache
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\obj\Debug\netcoreapp2.1\TabelaFipe.dll
+D:\Projetos\TabelaFipe\ConsultaTabelaFipe\TabelaFipe\TabelaFipe\obj\Debug\netcoreapp2.1\TabelaFipe.pdb
