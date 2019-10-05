@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.Http;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace TabelaFipe.Controllers
 {
@@ -13,12 +7,9 @@ namespace TabelaFipe.Controllers
     public class TabelaFipeController : ControllerBase
     {
         [HttpGet("RetornarVeiculo")]
-        public object RetornarVeiculo(string tipoVeiculo, string acao, string parametro, int? idVeiculo, int? idAnoVeiculo)
+        public object RetornarVeiculo(string tipoVeiculo, string nomeDaMarca, string fipeName)
         {
-            return new
-            {
-                f = "Deu certo."
-            };
+            return new Model.TabelaFipe(tipoVeiculo, nomeDaMarca, fipeName).RetornarVeiculo();
         }
     }
 }
