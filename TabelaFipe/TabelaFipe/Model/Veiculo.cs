@@ -24,6 +24,7 @@ namespace TabelaFipe.Model
         public object GetVeiculo(string tipoVeiculo, string idMarca, string idVeiculo, string fipeCodigo)
         {
             WebRequest requisicaoFipe;
+
             if (fipeCodigo == null)
             {
                 requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
@@ -34,7 +35,6 @@ namespace TabelaFipe.Model
                 requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
                                                         + idMarca + "/" + idVeiculo + "/" + fipeCodigo + ".json");
             }
-
             requisicaoFipe.Method = "GET";
 
             using (var response = requisicaoFipe.GetResponse())
