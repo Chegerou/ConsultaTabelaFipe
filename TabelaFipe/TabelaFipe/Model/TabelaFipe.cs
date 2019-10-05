@@ -11,7 +11,7 @@ namespace TabelaFipe
     public class TabelaFipe
     {
         #region Propriedades
-        private const string URLTabelaFipe = "http://fipeapi.appspot.com/api/1/";
+        public static string URLTabelaFipe = "http://fipeapi.appspot.com/api/1/";
         private string TipoVeiculo { get; set; }
         private string Acao { get; set; }
         private string Parametro { get; set; }
@@ -30,7 +30,7 @@ namespace TabelaFipe
         }
         #endregion
 
-        public List<VeiculoTabelaFipe> GetTabelaFipe()
+        public List<Veiculo> GetTabelaFipe()
         {
             var requisicaoFipe = MotarUrlDeRequisicao();
             requisicaoFipe.Method = "GET";
@@ -41,7 +41,7 @@ namespace TabelaFipe
                 StreamReader reader = new StreamReader(streamDados);
                 object objctResponse = reader.ReadToEnd();
 
-                return JsonConvert.DeserializeObject<List<VeiculoTabelaFipe>>(objctResponse.ToString());
+                return JsonConvert.DeserializeObject<List<Veiculo>>(objctResponse.ToString());
             }
         }
 
@@ -58,6 +58,12 @@ namespace TabelaFipe
 
             return WebRequest.CreateHttp(URLTabelaFipe + TipoVeiculo + "/" + Acao + "/" + Parametro + ".json");
         }
+
+       
+
+
+
+
 
     }
 }
