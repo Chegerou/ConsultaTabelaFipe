@@ -23,11 +23,11 @@ namespace TabelaFipe.Model
         }
         #endregion
 
-        public List<Veiculo> RetornarVeiculo()
+        public object RetornarVeiculo(string fipeCodigo)
         {
             this.BuscarIdMarca();
             this.BuscarIdVeiculo();
-            return new Veiculo().GetVeiculo(TipoVeiculo, IdMarca, IdVeiculo);
+            return new Veiculo().GetVeiculo(TipoVeiculo, IdMarca, IdVeiculo,fipeCodigo);
         }
                
         public void BuscarIdMarca()

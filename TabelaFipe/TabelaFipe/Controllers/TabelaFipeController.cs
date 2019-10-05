@@ -7,9 +7,9 @@ namespace TabelaFipe.Controllers
     public class TabelaFipeController : ControllerBase
     {
         [HttpGet("RetornarVeiculo")]
-        public object RetornarVeiculo(string tipoVeiculo, string nomeDaMarca, string fipeName)
+        public object RetornarVeiculo(string tipoVeiculo, string nomeDaMarca, string fipeName, string fipeCodigo)
         {
-            return new Model.TabelaFipe(tipoVeiculo, nomeDaMarca, fipeName).RetornarVeiculo();
+            return new Model.TabelaFipe(tipoVeiculo, nomeDaMarca, fipeName).RetornarVeiculo(fipeCodigo);
         }
     }
 }

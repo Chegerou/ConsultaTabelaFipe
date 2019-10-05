@@ -18,13 +18,23 @@ namespace TabelaFipe.Model
         public string Referencia { get; set; }
         public string Fipe_codigo { get; set; }
         public string Key { get; set; }
-        public string Fipe_name { get; set; } 
+        public string Fipe_name { get; set; }
         #endregion
 
-        public List<Veiculo> GetVeiculo(string tipoVeiculo, string idMarca, string idVeiculo)
+        public object GetVeiculo(string tipoVeiculo, string idMarca, string idVeiculo, string fipeCodigo)
         {
-            var requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
-                                                        + idMarca + "/" + idVeiculo + ".json");
+            WebRequest requisicaoFipe;
+            if (fipeCodigo == null)
+            {
+                requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
+                                                           + idMarca + "/" + idVeiculo + ".json");
+            }
+            else
+            {
+                requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
+                                                        + idMarca + "/" + idVeiculo + "/" + fipeCodigo + ".json");
+            }
+
             requisicaoFipe.Method = "GET";
 
             using (var response = requisicaoFipe.GetResponse())
@@ -32,8 +42,14 @@ namespace TabelaFipe.Model
                 var streamDados = response.GetResponseStream();
                 StreamReader reader = new StreamReader(streamDados);
                 object objctResponse = reader.ReadToEnd();
-
-                return JsonConvert.DeserializeObject<List<Veiculo>>(objctResponse.ToString());
+                if (fipeCodigo == null)
+                {
+                    return JsonConvert.DeserializeObject<List<Veiculo>>(objctResponse.ToString());
+                }
+                else
+                {
+                    return JsonConvert.DeserializeObject<Veiculo>(objctResponse.ToString());
+                }
             }
         }
     }

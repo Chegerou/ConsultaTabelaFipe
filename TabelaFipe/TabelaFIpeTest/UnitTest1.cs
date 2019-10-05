@@ -10,7 +10,7 @@ namespace TabelaFipeTest
         {
             var tabelaFipe = new TabelaFipe.Model.TabelaFipe("carros", "Fiat", "Palio 1.0");
 
-            var teste = tabelaFipe.RetornarVeiculo();
+            //var teste = tabelaFipe.RetornarVeiculo();
 
         }
     }
