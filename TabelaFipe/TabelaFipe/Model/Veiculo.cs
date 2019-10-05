@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 
-namespace TabelaFipe
+namespace TabelaFipe.Model
 {
     public class Veiculo
     {
@@ -26,7 +26,7 @@ namespace TabelaFipe
 
         public List<Veiculo> GetVeiculo(string tipoVeiculo, string idMarca, string idVeiculo)
         {
-            var requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculos/"
+            var requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
                                                         + idMarca + "/" + idVeiculo + ".json");
             requisicaoFipe.Method = "GET";
 

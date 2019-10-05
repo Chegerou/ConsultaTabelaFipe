@@ -1,69 +1,73 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Web;
 
-namespace TabelaFipe
+namespace TabelaFipe.Model
 {
     public class TabelaFipe
     {
         #region Propriedades
         public static string URLTabelaFipe = "http://fipeapi.appspot.com/api/1/";
         private string TipoVeiculo { get; set; }
-        private string Acao { get; set; }
-        private string Parametro { get; set; }
-        private int? IdVeiculo { get; set; }
-        private int? IdAnoVeiculo { get; set; }
+        private string IdMarca { get; set; }
+        private string IdVeiculo { get; set; }
+        public string NomeDaMarca { get; set; }
+        public string FipeName { get; set; }
         #endregion
 
         #region Metodo construtor
-        public TabelaFipe(string tipoVeiculo, string acao, string parametro, int? idVeiculo, int? idAnoVeiculo)
+        public TabelaFipe(string tipoVeiculo, string nomeDaMarca, string fipeName)
         {
             TipoVeiculo = tipoVeiculo;
-            Acao = acao;
-            Parametro = parametro;
-            IdVeiculo = idVeiculo;
-            IdAnoVeiculo = idAnoVeiculo;
+            NomeDaMarca = nomeDaMarca;
+            FipeName = fipeName;
         }
         #endregion
 
-        public List<Veiculo> GetTabelaFipe()
+        public List<Veiculo> RetornarVeiculo()
         {
-            var requisicaoFipe = MotarUrlDeRequisicao();
-            requisicaoFipe.Method = "GET";
-
-            using (var response = requisicaoFipe.GetResponse())
+            this.BuscarIdMarca();
+            this.BuscarIdVeiculo();
+            return new Veiculo().GetVeiculo(TipoVeiculo, IdMarca, IdVeiculo);
+        }
+               
+        public void BuscarIdMarca()
+        {
+            var marcas = new Marca().GetMarca(TipoVeiculo);
+            if (marcas != null)
             {
-                var streamDados = response.GetResponseStream();
-                StreamReader reader = new StreamReader(streamDados);
-                object objctResponse = reader.ReadToEnd();
-
-                return JsonConvert.DeserializeObject<List<Veiculo>>(objctResponse.ToString());
+                foreach (var marca in marcas)
+                {
+                    if (NomeDaMarca.ToUpper() == marca.Name.ToUpper())
+                    {
+                        IdMarca = marca.Id;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                throw new Exception("A marca procurada não existe.");
             }
         }
 
-        public WebRequest MotarUrlDeRequisicao()
+        public void BuscarIdVeiculo()
         {
-            if (String.IsNullOrEmpty(Parametro))
-                return WebRequest.CreateHttp(URLTabelaFipe + TipoVeiculo + "/" + Acao + ".json");
-
-            else if (IdVeiculo != 0)
-                return WebRequest.CreateHttp(URLTabelaFipe + TipoVeiculo + "/" + Acao + "/" + Parametro + " / " + IdVeiculo + ".json");
-
-            else if (IdAnoVeiculo != 0)
-                return WebRequest.CreateHttp(URLTabelaFipe + TipoVeiculo + "/" + Acao + "/" + Parametro + " / " + IdVeiculo + "/" + IdAnoVeiculo + ".json");
-
-            return WebRequest.CreateHttp(URLTabelaFipe + TipoVeiculo + "/" + Acao + "/" + Parametro + ".json");
+            var veiculos = new Veiculos().GetVeiculos(TipoVeiculo, IdMarca);
+            if (veiculos != null)
+            {
+                foreach (var veiculo in veiculos)
+                {
+                    if (veiculo.Fipe_name.Contains(FipeName))
+                    {
+                        IdVeiculo = veiculo.Id;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                throw new Exception("O veiculo procurada não existe.");
+            }
         }
-
-       
-
-
-
-
-
     }
 }

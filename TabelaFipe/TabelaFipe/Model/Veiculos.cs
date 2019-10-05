@@ -13,6 +13,7 @@ namespace TabelaFipe.Model
         public string Key { get; set; }
         public string Fipe_name { get; set; }
         public string Name { get; set; }
+        public string Id { get; set; }
 
         public List<Veiculos> GetVeiculos(string tipoVeiculo, string idMarca)
         {
@@ -29,8 +30,5 @@ namespace TabelaFipe.Model
             }
 
         }
-
-
-
     }
 }

@@ -1,6 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TabelaFipe;
-using TabelaFipe.Model;
 
 namespace TabelaFipeTest
 {
@@ -10,21 +8,9 @@ namespace TabelaFipeTest
         [TestMethod]
         public void TestMethod1()
         {
-            var x = new Marca();
-            var y = new Veiculo();
+            var tabelaFipe = new TabelaFipe.Model.TabelaFipe("carros", "Fiat", "Palio 1.0");
 
-            var resposta = x.GetMarca("carros");
-
-            foreach (var res in resposta)
-            {
-                if (res.Name == "Fiat".ToUpper())
-                {
-                    y.Id = res.Id;
-                    break;
-                }
-            }
-
-            var teste = y.Id;
+            var teste = tabelaFipe.RetornarVeiculo();
 
         }
     }

@@ -15,9 +15,10 @@ namespace TabelaFipe.Controllers
         [HttpGet("RetornarVeiculo")]
         public object RetornarVeiculo(string tipoVeiculo, string acao, string parametro, int? idVeiculo, int? idAnoVeiculo)
         {
-            var tabela = new TabelaFipe(tipoVeiculo,acao,parametro,idVeiculo,idAnoVeiculo);
-
-            return tabela.GetTabelaFipe();
+            return new
+            {
+                f = "Deu certo."
+            };
         }
     }
 }
