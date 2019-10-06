@@ -1,4 +1,4 @@
-angular.module("tabelaFipe", [])
+angular.module("TabelaFipe", [])
     .factory("VeiculoFactory", function ($q, $http) {
         return {
             buscarVeiculo: function (tipoVeiculo, nomeDaMarca, fipeName, fipeCodigo) {

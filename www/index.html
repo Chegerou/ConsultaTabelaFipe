@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="TabelaFipe">
+    <head>
+        <meta charset="UTF-8">
+        <title>Consulta Tabela Fipe</title>
+    </head>
+    <body ng-controller="FipeCrtl">
+        <div>
+            <h1>{{titulo}}</h1>
+            <input type="text" ng-model="tipoVeiculo">
+            <input type="text" ng-model="nomeDaMarca">
+            <input type="text" ng-model="fipeName">
+            <input type="text" ng-model="fipeCodigo">
+            <button ngclick="buscarVeiculo()">Teste</button>
+        </div>
+
+        <!--SCRIPTS INICIO-->
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+
+        <!--SCRIPTS FIM-->
+    </body>
+</html>
