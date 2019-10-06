@@ -57,7 +57,7 @@ namespace TabelaFipe.Model
             {
                 foreach (var veiculo in veiculos)
                 {
-                    if (veiculo.Fipe_name.Contains(FipeName))
+                    if (veiculo.Fipe_name.ToUpper().Contains(FipeName.ToUpper()))
                     {
                         IdVeiculo = veiculo.Id;
                         break;

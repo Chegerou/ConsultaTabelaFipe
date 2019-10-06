@@ -1,4 +1,4 @@
-angular.module("TabelaFipe", [])
+angular.module("projetoTabelaFipe")
     .factory("VeiculoFactory", function ($q, $http) {
         return {
             buscarVeiculo: function (tipoVeiculo, nomeDaMarca, fipeName, fipeCodigo) {
@@ -8,6 +8,7 @@ angular.module("TabelaFipe", [])
 
                 $http.get(url).then(
                     function (sucess) {
+                        promessa.resolve(sucess.data);
                         console.log(sucess);
                     },
                     function (error) {

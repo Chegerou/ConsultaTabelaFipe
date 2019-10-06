@@ -21,20 +21,16 @@ namespace TabelaFipe.Model
         public string Fipe_name { get; set; }
         #endregion
 
-        public object GetVeiculo(string tipoVeiculo, string idMarca, string idVeiculo, string fipeCodigo)
+        public  List<Veiculo> GetVeiculo(string tipoVeiculo, string idMarca, string idVeiculo, string fipeCodigo)
         {
             WebRequest requisicaoFipe;
 
-            if (fipeCodigo == null)
-            {
-                requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
-                                                           + idMarca + "/" + idVeiculo + ".json");
-            }
-            else
-            {
-                requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
-                                                        + idMarca + "/" + idVeiculo + "/" + fipeCodigo + ".json");
-            }
+            requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
+                                                       + idMarca + "/" + idVeiculo + ".json");
+
+            //    requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
+            //                                            + idMarca + "/" + idVeiculo + "/" + fipeCodigo + ".json");
+
             requisicaoFipe.Method = "GET";
 
             using (var response = requisicaoFipe.GetResponse())
@@ -42,14 +38,11 @@ namespace TabelaFipe.Model
                 var streamDados = response.GetResponseStream();
                 StreamReader reader = new StreamReader(streamDados);
                 object objctResponse = reader.ReadToEnd();
-                if (fipeCodigo == null)
-                {
-                    return JsonConvert.DeserializeObject<List<Veiculo>>(objctResponse.ToString());
-                }
-                else
-                {
-                    return JsonConvert.DeserializeObject<Veiculo>(objctResponse.ToString());
-                }
+
+                return JsonConvert.DeserializeObject<List<Veiculo>>(objctResponse.ToString());
+
+
+                //    return JsonConvert.DeserializeObject<Veiculo>(objctResponse.ToString());
             }
         }
     }

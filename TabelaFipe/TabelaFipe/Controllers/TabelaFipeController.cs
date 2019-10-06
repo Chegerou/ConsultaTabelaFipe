@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using TabelaFipe.Model;
 
 namespace TabelaFipe.Controllers
 {
@@ -7,9 +10,13 @@ namespace TabelaFipe.Controllers
     public class TabelaFipeController : ControllerBase
     {
         [HttpGet("RetornarVeiculo")]
-        public object RetornarVeiculo(string tipoVeiculo, string nomeDaMarca, string fipeName, string fipeCodigo)
+        public List<Veiculo> RetornarVeiculo(string tipoVeiculo, string nomeDaMarca, string fipeName, string fipeCodigo)
         {
-            return new Model.TabelaFipe(tipoVeiculo, nomeDaMarca, fipeName).RetornarVeiculo(fipeCodigo);
+            if (string.IsNullOrWhiteSpace(tipoVeiculo) && string.IsNullOrWhiteSpace(tipoVeiculo) && string.IsNullOrWhiteSpace(tipoVeiculo))
+            {
+                 throw new Exception("Você deve preencher os campos obrigatorios.");
+            }
+            return (List<Veiculo>)new Model.TabelaFipe(tipoVeiculo, nomeDaMarca, fipeName).RetornarVeiculo(fipeCodigo);
         }
     }
 }
