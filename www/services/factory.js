@@ -1,10 +1,10 @@
 angular.module("projetoTabelaFipe")
     .factory("VeiculoFactory", function ($q, $http) {
         return {
-            buscarVeiculo: function (tipoVeiculo, nomeDaMarca, fipeName, fipeCodigo) {
+            buscarVeiculo: function (tipoVeiculo, nomeDaMarca, fipeName) {
                 var promessa = $q.defer();
                 var url = "https://localhost:44375/api/TabelaFipe/RetornarVeiculo?tipoVeiculo=" + tipoVeiculo
-                    + "&nomeDaMarca=" + nomeDaMarca + "&fipeName=" + fipeName + "&fipeCodigo=" + fipeCodigo;
+                    + "&nomeDaMarca=" + nomeDaMarca + "&fipeName=" + fipeName;
 
                 $http.get(url).then(
                     function (sucess) {
@@ -12,7 +12,7 @@ angular.module("projetoTabelaFipe")
                         console.log(sucess);
                     },
                     function (error) {
-                        console.log(erro);
+                        return alert(error);
                     }
                 );
                 return promessa.promise;
@@ -28,7 +28,7 @@ angular.module("projetoTabelaFipe")
                         console.log(sucess);
                     },
                     function (error) {
-                        console.log(erro);
+                        return alert(error);
                     }
                 );
                 return promessa.promise;

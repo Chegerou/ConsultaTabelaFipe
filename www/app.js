@@ -1,10 +1,8 @@
 angular.module("projetoTabelaFipe", [])
     .controller("FipeCrtl", ["$scope", "VeiculoFactory", function ($scope, VeiculoFactory) {
-        $scope.titulo = "Tabela Fipe";
-
         $scope.buscarVeiculo = function () {
             $scope.ValidarCamposObrigatorios();
-            VeiculoFactory.buscarVeiculo($scope.tipoVeiculo, $scope.nomeDaMarca, $scope.fipeName, $scope.fipeCodigo).then(function (resposta) {
+            VeiculoFactory.buscarVeiculo($scope.tipoVeiculo, $scope.nomeDaMarca, $scope.fipeName).then(function (resposta) {
                 $scope.dataVeiculos = resposta;
             });
         };
@@ -19,16 +17,13 @@ angular.module("projetoTabelaFipe", [])
         $scope.ValidarCamposObrigatorios = function () {
 
             if ($scope.tipoVeiculo == undefined)
-                $scope.tipoVeiculo = "";
+                return alert("Você deve preencher o campo Tipo Veiculo.");
 
             if ($scope.nomeDaMarca == undefined)
-                $scope.nomeDaMarca = "";
+                return alert("Você deve preencher o campo Nome da Marca.");
 
             if ($scope.fipeName == undefined)
-                $scope.fipeName = "";
-
-            if ($scope.fipeCodigo == undefined)
-                $scope.fipeCodigo = "";
+                return alert("Você deve preencher o campo Modelo.");
         }
 
 

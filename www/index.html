@@ -2,21 +2,26 @@
 <html ng-app="projetoTabelaFipe">
     <head>
         <meta charset="UTF-8">
-        <title>Consulta Tabela Fipe</title>
+        <title>Consulta Preço Médio</title>
     </head>
     <body ng-controller="FipeCrtl">
 
         <div>
             <div class="col-md-12">
-                <h1>{{titulo}}</h1>
+                <h1>Bem vindo</h1>
 
+                <p>Você está no Consulta Preço Médio, pedimos a você que nos
+                    informe o <strong> Tipo de veículo </strong> que procura, o
+                    <strong>nome da marca</strong> deste veiculo e o <strong>modelo</strong>
+                    deste veiculo.</p>
                 <!--TIPO VEICULO INICIO-->
                 <div class="col-md-2">
                     <select name="tipoVeiculoSelect" placeholder="Tipo de
                         veiculo"
                         class="form-control
-                        form-control-sm" ng-model="tipoVeiculo">
-                        <option class="dropdown-item" value="carros">Carros</option>
+                        form-control-sm tamanho-select" ng-model="tipoVeiculo">
+                        <option class="dropdown-item"
+                            value="carros">Carros</option>
                         <option class="dropdown-item" value="motos">Motos</option>
                         <option class="dropdown-item" value="caminhoes">Caminhões</option>
                     </select>
@@ -33,13 +38,6 @@
                 <div class="form-group col-md-2 alinhar-modelo">
                     <input type="text" class="form-control" ng-model="fipeName"
                         placeholder="Modelo // Ex: Palio 1.0">
-                </div>
-
-                <!--CODIGO FIPE INICIO-->
-                <div class="form-group col-md-2 alinhar-codigo-fipe">
-                    <input type="text" class="form-control"
-                        ng-model="fipeCodigo"
-                        placeholder="Codigo Fipe">
                 </div>
 
                 <button class="btn btn-primary alinhar-botao-pesquisar"
