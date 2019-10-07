@@ -4,43 +4,135 @@
         <meta charset="UTF-8">
         <title>Consulta Tabela Fipe</title>
     </head>
-    <body>
-        <div ng-controller="FipeCrtl">
-            <h1>{{titulo}}</h1>
-            <label>Tipo Veiculo</label>
-            <input type="text" ng-model="tipoVeiculo">
+    <body ng-controller="FipeCrtl">
 
-            <label>Nome da marca</label>
-            <input type="text" ng-model="nomeDaMarca">
+        <div>
+            <div class="col-md-12">
+                <h1>{{titulo}}</h1>
 
-            <label>Nome do carro</label>
-            <input type="text" ng-model="fipeName">
+                <!--TIPO VEICULO INICIO-->
+                <div class="col-md-2">
+                    <select name="tipoVeiculoSelect" placeholder="Tipo de
+                        veiculo"
+                        class="form-control
+                        form-control-sm" ng-model="tipoVeiculo">
+                        <option class="dropdown-item" value="carros">Carros</option>
+                        <option class="dropdown-item" value="motos">Motos</option>
+                        <option class="dropdown-item" value="caminhoes">Caminhões</option>
+                    </select>
+                </div>
 
-            <label>Fipe Codigo</label>
-            <input type="text" ng-model="fipeCodigo">
+                <!--NOME DA MARCA INICIO-->
+                <div class="form-group col-md-2 alinhar-nome-marca">
+                    <input type="text" class="form-control"
+                        ng-model="nomeDaMarca"
+                        placeholder="Nome da marca">
+                </div>
 
-            <button ng-click="buscarVeiculo()">Teste</button>
+                <!--MODELO INICIO-->
+                <div class="form-group col-md-2 alinhar-modelo">
+                    <input type="text" class="form-control" ng-model="fipeName"
+                        placeholder="Modelo // Ex: Palio 1.0">
+                </div>
 
-            <table>
-                <tr>
-                    <th>Nome</th>
-                    <th>Combustivel</th>
-                </tr>
-                <tr>
-                    <td ng-reapeat="veiculo in dataVeiculos">{{veiculo.veiculo}}</td>
-                    <td ng-reapeat="veiculo in dataVeiculos">{{veiculo.name}}</td>
-                </tr>
-            </table>
+                <!--CODIGO FIPE INICIO-->
+                <div class="form-group col-md-2 alinhar-codigo-fipe">
+                    <input type="text" class="form-control"
+                        ng-model="fipeCodigo"
+                        placeholder="Codigo Fipe">
+                </div>
+
+                <button class="btn btn-primary alinhar-botao-pesquisar"
+                    ng-click="buscarVeiculo()">Pesquisar</button>
+            </div>
+
+            <!--TABELA DE EXIBICAO DOS VEICULOS-->
+            <div class="col-md-12">
+                <table class="table background-tabelafipe">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fipe Codigo</th>
+                            <th scope="col">Veiculo</th>
+                            <th scope="col">Combustível</th>
+                            <th scope="col">Ano</th>
+                            <th scope="col">Visualizar Preço medio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="veiculo in dataVeiculos">
+                            <th>{{veiculo.key}}</th>
+                            <td>{{veiculo.veiculo}}</td>
+                            <td>{{veiculo.name}}</td>
+                            <td>{{veiculo.key}}</td>
+                            <td><button class="btn btn-primary"
+                                    ng-click="VisualizarPrecoMedio(tipoVeiculo,
+                                    veiculo.marca, veiculo.veiculo,
+                                    veiculo.fipe_codigo)" data-toggle="modal"
+                                    data-target="#modalPrecoMedio">Visualizar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- MODAL PRECO MEDIO -->
+        <div class="modal fade" id="modalPrecoMedio" tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Preço
+                            Medio</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <!--TABELA DE EXIBICAO DO VEICULO-->
+                        <div class="col-md-12">
+                            <table class="table background-tabelafipe">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Fipe Codigo</th>
+                                        <th scope="col">Veiculo</th>
+                                        <th scope="col">Combustível</th>
+                                        <th scope="col">Ano</th>
+                                        <th scope="col">Preço medio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>{{veiculoCompleto.key}}</th>
+                                        <td>{{veiculoCompleto.veiculo}}</td>
+                                        <td>{{veiculoCompleto.name}}</td>
+                                        <td>{{veiculoCompleto.key}}</td>
+                                        <td>{{veiculoCompleto.preco}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!--SCRIPTS INICIO-->
-        <script type="text/javascript" src="js/angular.min.js"></script>
-        <script type="text/javascript" src="app.js"></script>
-        <script type="text/javascript" src="services/factory.js"></script>
+        <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous">
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="services/factory.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>

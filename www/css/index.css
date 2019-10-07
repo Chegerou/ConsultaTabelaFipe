@@ -1,0 +1,27 @@
+.alinhar-nome-marca{
+    position: absolute;
+    margin-left: 201px;
+    margin-top: -32px;
+}
+
+.alinhar-modelo{
+    position: absolute;
+    margin-left: 398px;
+    margin-top: -53px;
+}
+
+.alinhar-codigo-fipe{
+    position: absolute;
+    margin-left: 596px;
+    margin-top: -53px;
+}
+
+.alinhar-botao-pesquisar{
+    position: absolute;
+    margin-left: 811px;
+    margin-top: -53px;
+}
+
+.background-tabelafipe{
+    background-color: #F0FFFF;
+}

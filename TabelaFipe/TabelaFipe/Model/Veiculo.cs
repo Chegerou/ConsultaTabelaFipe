@@ -21,16 +21,12 @@ namespace TabelaFipe.Model
         public string Fipe_name { get; set; }
         #endregion
 
-        public  List<Veiculo> GetVeiculo(string tipoVeiculo, string idMarca, string idVeiculo, string fipeCodigo)
+        public List<Veiculo> GetVeiculos(string tipoVeiculo, string idMarca, string idVeiculo)
         {
             WebRequest requisicaoFipe;
 
             requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
                                                        + idMarca + "/" + idVeiculo + ".json");
-
-            //    requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
-            //                                            + idMarca + "/" + idVeiculo + "/" + fipeCodigo + ".json");
-
             requisicaoFipe.Method = "GET";
 
             using (var response = requisicaoFipe.GetResponse())
@@ -40,9 +36,24 @@ namespace TabelaFipe.Model
                 object objctResponse = reader.ReadToEnd();
 
                 return JsonConvert.DeserializeObject<List<Veiculo>>(objctResponse.ToString());
+            }
+        }
 
+        public Veiculo GetVeiculoCompleto(string tipoVeiculo, string idMarca, string idVeiculo, string fipeCodigo)
+        {
+            WebRequest requisicaoFipe;
+            requisicaoFipe = WebRequest.CreateHttp(TabelaFipe.URLTabelaFipe + tipoVeiculo + "/veiculo/"
+                                                    + idMarca + "/" + idVeiculo + "/" + fipeCodigo + ".json");
 
-                //    return JsonConvert.DeserializeObject<Veiculo>(objctResponse.ToString());
+            requisicaoFipe.Method = "GET";
+
+            using (var response = requisicaoFipe.GetResponse())
+            {
+                var streamDados = response.GetResponseStream();
+                StreamReader reader = new StreamReader(streamDados);
+                object objctResponse = reader.ReadToEnd();
+
+                return JsonConvert.DeserializeObject<Veiculo>(objctResponse.ToString());
             }
         }
     }

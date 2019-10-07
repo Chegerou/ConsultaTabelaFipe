@@ -10,13 +10,24 @@ namespace TabelaFipe.Controllers
     public class TabelaFipeController : ControllerBase
     {
         [HttpGet("RetornarVeiculo")]
-        public List<Veiculo> RetornarVeiculo(string tipoVeiculo, string nomeDaMarca, string fipeName, string fipeCodigo)
+        public List<Veiculo> RetornarVeiculo(string tipoVeiculo, string nomeDaMarca, string fipeName)
         {
             if (string.IsNullOrWhiteSpace(tipoVeiculo) && string.IsNullOrWhiteSpace(tipoVeiculo) && string.IsNullOrWhiteSpace(tipoVeiculo))
             {
                  throw new Exception("Você deve preencher os campos obrigatorios.");
             }
-            return (List<Veiculo>)new Model.TabelaFipe(tipoVeiculo, nomeDaMarca, fipeName).RetornarVeiculo(fipeCodigo);
+            return (List<Veiculo>)new Model.TabelaFipe(tipoVeiculo, nomeDaMarca, fipeName).RetornarVeiculo();
         }
+
+        [HttpGet("RetornarVeiculoCompleto")]
+        public Veiculo RetornarVeiculoCompleto(string tipoVeiculo, string nomeDaMarca, string fipeName, string fipeCodigo)
+        {
+            if (string.IsNullOrWhiteSpace(tipoVeiculo) && string.IsNullOrWhiteSpace(tipoVeiculo) && string.IsNullOrWhiteSpace(tipoVeiculo))
+            {
+                throw new Exception("Você deve preencher os campos obrigatorios.");
+            }
+            return  new Model.TabelaFipe(tipoVeiculo, nomeDaMarca, fipeName).RetornarVeiculoCompleto(fipeCodigo);
+        }
+
     }
 }
